@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="style/bootstrap.min.css" />
+        <title>Ajouter un chantier</title>
+    </head>
+    <body>
+        <h1>Nouveau chantier</h1>
+
+        <form id="ajChantier">
+            <div class="form-group">
+                <label class="form-label mt-2" for="numero_affaires">Numéro d'affaires</label>
+                <input class="form-control" type="text" id="numero_affaires" name="numero_affaires" pattern="\d{2}\.\d{6}" required />
+            </div>
+
+            <div class="form-group">
+                <label class="form-label mt-2" for="agence">Agence</label>
+                <select class="form-select" id="agence" name="agence" required>
+                    <option value="">Sélectionner une agence</option>
+                    <option value="Centre">Centre</option>
+                    <option value="Centre est">Centre est</option>
+                    <option value="Env">Env</option>
+                    <option value="Est">Est</option>
+                    <option value="GC">GC</option>
+                    <option value="Nord">Nord</option>
+                    <option value="Ouest">Ouest</option>
+                    <option value="Paris">Paris</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label mt-2" for="technicien">Technicien</label>
+                <select class="form-select" id="technicien" name="technicien" required>
+                    <option value="">Sélectionner un technicien</option>
+                    <option value="RRA">RRA</option>
+                    <option value="NRA">NRA</option>
+                    <option value="AAL">AAL</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label mt-2" for="semaine">Semaine</label>
+                <input class="form-control" type="number" id="semaine" name="semaine" min="01" max="53" required />
+            </div>
+
+            <div class="form-group">
+                <label class="form-label mt-2" for="montant">Montant</label>
+                <input class="form-control" type="number" id="montant" name="montant" step="0.01" required />
+            </div>
+
+            <div class="form-group">
+                <label class="form-label mt-2" class="form-label mt-2" for="nombre_jours">Nombre de jours</label>
+                <input class="form-control" type="number" id="nombre_jours" name="nombre_jours" step="0.1" required />
+            </div>
+
+            <button class="btn btn-secondary mt-2" type="submit">Valider</button>
+        </form>
+
+        <a href="index.html" class="btn btn-primary mt-2">Retour à l'accueil</a>
+    </body>
+</html>
+
+<script>
+    function submitForm(event) {
+      event.preventDefault(); // Empêche l'envoi du formulaire
+  
+      // Récupération des valeurs des champs
+      var numeroAffaires = document.getElementById("numero_affaires").value;
+      var agence = document.getElementById("agence").value;
+      var technicien = document.getElementById("technicien").value;
+      var semaine = document.getElementById("semaine").value;
+      var montant = document.getElementById("montant").value;
+      var nombreJours = document.getElementById("nombre_jours").value;
+  
+      // Affichage des valeurs dans la console
+      console.log("Numéro d'affaires:", numeroAffaires);
+      console.log("Agence:", agence);
+      console.log("Technicien:", technicien);
+      console.log("Semaine:", semaine);
+      console.log("Montant:", montant);
+      console.log("Nombre de jours:", nombreJours);
+    }
+  
+    document.getElementById("ajChantier").addEventListener("submit", submitForm);
+  </script>
+  
