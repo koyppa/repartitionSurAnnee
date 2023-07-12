@@ -14,7 +14,7 @@
 
             <table class="table table-hover">
                 <thead>
-                    <tr>
+                    <tr class="table-active">
                         <th scope="col">Identifiant</th>
                         <th scope="col">Nom</th>
                         <th scope="col">Prénom</th>
@@ -23,12 +23,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="table-active" v-for="(technicien, index) in techniciens" :key="index">
+                    <tr v-for="(technicien, index) in techniciens" :key="index">
                         <th>{{technicien.idTech}}</th>
                         <td>{{technicien.nomTech}}</td>
                         <td>{{technicien.prenomTech}}</td>
                         <td>
-                            <a :href="`edit_technicien.html?id=${technicien.idTech}&nom=${technicien.nomTech}&prenom=${technicien.prenomTech}`">
+                            <a
+                                :href="`edit_technicien.html?id=${technicien.idTech}&nom=${technicien.nomTech}&prenom=${technicien.prenomTech}`"
+                            >
                                 <i class="fa-regular fa-pen-to-square" style="color: #2c3e50; cursor: pointer"></i>
                             </a>
                         </td>
