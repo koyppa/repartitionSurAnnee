@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="style/bootstrap.min.css" />
+        <link rel="stylesheet" href="style/style.css" />
+        <title>Modifier un technicien</title>
+    </head>
+    <body>
+        <h1>Modifier un technicien</h1>
+
+        <form id="mdTechnicien">
+            <div class="form-group">
+                <label class="form-label mt-2" for="idTech">Identifiant</label>
+                <input class="form-control" type="text" id="idTech" name="idTech" required />
+            </div>
+
+            <div class="form-group">
+                <label class="form-label mt-2" for="nomTech">Nom</label>
+                <input class="form-control" type="text" id="nomTech" name="nomTech" required />
+            </div>
+
+            <div class="form-group">
+                <label class="form-label mt-2" for="prenomTech">Prénom</label>
+                <input class="form-control" type="text" id="prenomTech" name="prenomTech" required />
+            </div>
+
+            <button class="btn btn-secondary mt-2 mr-2" type="submit">Valider</button>
+        </form>
+    </body>
+</html>
+
+<script>
+    // Récupérer les paramètres de requête de l'URL
+    const urlParams = new URLSearchParams(window.location.search);
+
+    // Récupérer les valeurs des paramètres de requête
+    const id = urlParams.get('id');
+    const nom = urlParams.get('nom');
+    const prenom = urlParams.get('prenom');
+
+    // Assigner les valeurs aux champs d'entrée
+    document.getElementById('idTech').value = id;
+    document.getElementById('nomTech').value = nom;
+    document.getElementById('prenomTech').value = prenom;
+
+    function submitForm(event) {
+        event.preventDefault(); // Empêche l'envoi du formulaire
+
+        // Récupération des valeurs des champs
+        var idTech = document.getElementById('idTech').value;
+        var nomTech = document.getElementById('nomTech').value;
+        var prenomTech = document.getElementById('prenomTech').value;
+
+        // Affichage des valeurs dans la console
+        console.log('Identifiant:', idTech);
+        console.log('Nom:', nomTech);
+        console.log('Prénom:', prenomTech);
+
+        // Redirection vers display_technicien.html
+        window.location.href = 'display_technicien.html';
+    }
+
+    //Submit du formulaire
+    document.getElementById('mdTechnicien').addEventListener('submit', submitForm);
+   
+</script>
