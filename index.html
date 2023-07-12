@@ -4,13 +4,47 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="style/bootstrap.min.css" />
-        <title>Accueil</title>
+        <link rel="stylesheet" href="style/style.css" />
+        <title>Connexion</title>
     </head>
+
     <body>
-        <h1>Page d'accueil</h1>
-        <p>Bienvenue sur votre outil de répartition des ressources</p>
+        <h1>Se connecter</h1>
 
-        <a href="form_chantier.html" class="btn btn-primary">Ajouter une intervention</a>
+        <p id="badConnect" class="text-warning" style="display: none">Login ou mot de passe incorrect.</p>
 
+        <form id="connect">
+            <div class="form-group">
+                <label class="form-label mt-2" for="login">Login</label>
+                <input class="form-control" type="text" id="login" name="login" required />
+            </div>
+
+            <div class="form-group">
+                <label class="form-label mt-2" for="mdp">Mot de passe</label>
+                <input class="form-control" type="password" id="mdp" name="mdp" required />
+            </div>
+
+            <button class="btn btn-secondary mt-2 mr-2" type="submit">Valider</button>
+        </form>
     </body>
 </html>
+
+<script>
+    function submitForm(event) {
+        event.preventDefault(); // Empêche l'envoi du formulaire
+
+        if (document.getElementById('login').value == 'root' && document.getElementById('mdp').value == 'root') {
+            window.location.href='home.html'
+        } else {
+            document.getElementById('badConnect').style.display = 'block';
+        }
+    }
+
+    //Submit du formulaire
+    document.getElementById('connect').addEventListener('submit', submitForm);
+
+    //Desaffichage du message d'erreur'
+    document.getElementById('connect').addEventListener('click', () => {
+        document.getElementById('badConnect').style.display = 'none';
+    });
+</script>

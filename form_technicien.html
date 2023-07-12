@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="style/bootstrap.min.css" />
+        <link rel="stylesheet" href="style/style.css" />
+        <title>Ajouter un technicien</title>
+    </head>
+    <body>
+        <h1>Nouveau technicien</h1>
+
+        <p id="addSuccess" class="text-success" style="display: none">Le nouveau technicien à été ajouté avec succès.</p>
+
+        <form id="ajTechnicien">
+            <div class="form-group">
+                <label class="form-label mt-2" for="idTech">Identifiant</label>
+                <input class="form-control" type="text" id="idTech" name="idTech" required />
+            </div>
+
+            <div class="form-group">
+                <label class="form-label mt-2" for="nomTech">Nom</label>
+                <input class="form-control" type="text" id="nomTech" name="nomTech" required />
+            </div>
+
+            <div class="form-group">
+                <label class="form-label mt-2" for="prenomTech">Prénom</label>
+                <input class="form-control" type="text" id="prenomTech" name="prenomTech" required />
+            </div>
+
+            <button class="btn btn-secondary mt-2 mr-2" type="submit">Valider</button>
+        </form>
+
+        <a href="home.html" class="btn btn-primary mt-2 mr-2">Retour à l'accueil</a>
+    </body>
+</html>
+
+<script>
+    function submitForm(event) {
+        event.preventDefault(); // Empêche l'envoi du formulaire
+
+        // Récupération des valeurs des champs
+        var idTech = document.getElementById('idTech').value;
+        var nomTech = document.getElementById('nomTech').value;
+        var prenomTech = document.getElementById('prenomTech').value;
+
+        // Affichage des valeurs dans la console
+        console.log('Identifiant:', idTech);
+        console.log('Nom:', nomTech);
+        console.log('Prénom:', prenomTech);
+
+        document.getElementById('addSuccess').style.display = 'block';
+        document.getElementById('ajTechnicien').reset();
+    }
+
+    //Submit du formulaire
+    document.getElementById('ajTechnicien').addEventListener('submit', submitForm);
+    //Desaffichage du message de succès
+    document.getElementById('ajTechnicien').addEventListener('click', () => {
+        document.getElementById('addSuccess').style.display = 'none';
+    });
+</script>

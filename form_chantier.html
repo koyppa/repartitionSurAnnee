@@ -4,10 +4,13 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="style/bootstrap.min.css" />
+        <link rel="stylesheet" href="style/style.css" />
         <title>Ajouter un chantier</title>
     </head>
     <body>
         <h1>Nouveau chantier</h1>
+
+        <p id="addSuccess" class="text-success" style="display: none">Le nouveau chantier à été ajouté avec succès.</p>
 
         <form id="ajChantier">
             <div class="form-group">
@@ -41,6 +44,16 @@
             </div>
 
             <div class="form-group">
+                <label class="form-label mt-2" for="machine">Moyen</label>
+                <select class="form-select" id="machine" name="machine" required>
+                    <option value="">Sélectionner un moyen</option>
+                    <option value="verte">Verte</option>
+                    <option value="sondeuse">Sondeuse</option>
+                    <option value="tech">Technicien</option>
+                </select>
+            </div>
+
+            <div class="form-group">
                 <label class="form-label mt-2" for="semaine">Semaine</label>
                 <input class="form-control" type="number" id="semaine" name="semaine" min="01" max="53" required />
             </div>
@@ -55,34 +68,41 @@
                 <input class="form-control" type="number" id="nombre_jours" name="nombre_jours" step="0.1" required />
             </div>
 
-            <button class="btn btn-secondary mt-2" type="submit">Valider</button>
+            <button class="btn btn-secondary mt-2 mr-2" type="submit">Valider</button>
         </form>
 
-        <a href="index.html" class="btn btn-primary mt-2">Retour à l'accueil</a>
+        <a href="home.html" class="btn btn-primary mt-2 mr-2">Retour à l'accueil</a>
     </body>
 </html>
 
 <script>
     function submitForm(event) {
-      event.preventDefault(); // Empêche l'envoi du formulaire
-  
-      // Récupération des valeurs des champs
-      var numeroAffaires = document.getElementById("numero_affaires").value;
-      var agence = document.getElementById("agence").value;
-      var technicien = document.getElementById("technicien").value;
-      var semaine = document.getElementById("semaine").value;
-      var montant = document.getElementById("montant").value;
-      var nombreJours = document.getElementById("nombre_jours").value;
-  
-      // Affichage des valeurs dans la console
-      console.log("Numéro d'affaires:", numeroAffaires);
-      console.log("Agence:", agence);
-      console.log("Technicien:", technicien);
-      console.log("Semaine:", semaine);
-      console.log("Montant:", montant);
-      console.log("Nombre de jours:", nombreJours);
+        event.preventDefault(); // Empêche l'envoi du formulaire
+
+        // Récupération des valeurs des champs
+        var numeroAffaires = document.getElementById('numero_affaires').value;
+        var agence = document.getElementById('agence').value;
+        var technicien = document.getElementById('technicien').value;
+        var machine = document.getElementById('machine').value;
+        var semaine = document.getElementById('semaine').value;
+        var montant = document.getElementById('montant').value;
+        var nombreJours = document.getElementById('nombre_jours').value;
+
+        // Affichage des valeurs dans la console
+        console.log("Numéro d'affaires:", numeroAffaires);
+        console.log('Agence:', agence);
+        console.log('Technicien:', technicien);
+        console.log('Machine:', machine);
+        console.log('Semaine:', semaine);
+        console.log('Montant:', montant);
+        console.log('Nombre de jours:', nombreJours);
+
+        document.getElementById('addSuccess').style.display = 'block';
+        document.getElementById('ajChantier').reset();
     }
-  
-    document.getElementById("ajChantier").addEventListener("submit", submitForm);
-  </script>
-  
+
+    document.getElementById('ajChantier').addEventListener('submit', submitForm);
+    document.getElementById('ajChantier').addEventListener('click', () => {
+        document.getElementById('addSuccess').style.display = 'none';
+    });
+</script>
