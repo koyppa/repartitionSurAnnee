@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="style/bootstrap.min.css" />
+        <link rel="stylesheet" href="style/style.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+        <title>Les chantiers</title>
+    </head>
+    <body>
+        <div id="app">
+            <h1>Les chantiers</h1>
+
+            <table class="table table-hover">
+                <thead>
+                    <tr class="table-active">
+                        <th scope="col">Numéro d'affaire</th>
+                        <th scope="col">Agence</th>
+                        <th scope="col">Technicien</th>
+                        <th scope="col">Moyen</th>
+                        <th scope="col">Semaine</th>
+                        <th scope="col">Montant</th>
+                        <th scope="col">Nombre de jour</th>
+                        <th scope="col">Modifier</th>
+                        <th scope="col">Supprimer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(chantier, index) in chantiers" :key="index">
+                        <th>{{chantier.numeroAffaire}}</th>
+                        <td>{{chantier.agence}}</td>
+                        <td>{{chantier.technicien}}</td>
+                        <td>{{chantier.moyen}}</td>
+                        <td>{{chantier.semaine}}</td>
+                        <td>{{chantier.montant}}</td>
+                        <td>{{chantier.nombreJour}}</td>
+                        <td>
+                            <a :href="`edit_chantier.html?numeroAffaire=${chantier.numeroAffaire}&agence=${chantier.agence}&technicien=${chantier.technicien}&moyen=${chantier.moyen}&semaine=${chantier.semaine}&montant=${chantier.montant}&nombreJour=${chantier.nombreJour}`">
+                                <i class="fa-regular fa-pen-to-square" style="color: #2c3e50; cursor: pointer"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <i class="fa-solid fa-trash" style="color: #2c3e50; cursor: pointer" @click="supprimerChantier(index)"></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <a href="home.html" class="btn btn-primary mt-4">Retour à l'accueil</a>
+        </div>
+    </body>
+</html>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            chantiers: [
+                {
+                    numeroAffaire: '21.230001',
+                    agence: 'Est',
+                    technicien: 'RRA',
+                    moyen: 'Verte',
+                    semaine: '01',
+                    montant: 200,
+                    nombreJour: 2,
+                },
+                {
+                    numeroAffaire: '21.230002',
+                    agence: 'Env',
+                    technicien: 'NRA',
+                    moyen: 'Sondeuse',
+                    semaine: '02',
+                    montant: 300,
+                    nombreJour: 3,
+                },
+                {
+                    numeroAffaire: '21.230003',
+                    agence: 'GC',
+                    technicien: 'OMA',
+                    moyen: 'Technicien',
+                    semaine: '03',
+                    montant: 400,
+                    nombreJour: 4,
+                },
+                {
+                    numeroAffaire: '21.230004',
+                    agence: 'Est',
+                    technicien: 'RRA',
+                    moyen: 'Verte',
+                    semaine: '04',
+                    montant: 500,
+                    nombreJour: 5,
+                },
+                {
+                    numeroAffaire: '21.230005',
+                    agence: 'Env',
+                    technicien: 'NRA',
+                    moyen: 'Sondeuse',
+                    semaine: '05',
+                    montant: 600,
+                    nombreJour: 6,
+                },
+                {
+                    numeroAffaire: '21.230006',
+                    agence: 'GC',
+                    technicien: 'OMA',
+                    moyen: 'Technicien',
+                    semaine: '06',
+                    montant: 700,
+                    nombreJour: 7,
+                },
+                {
+                    numeroAffaire: '21.230007',
+                    agence: 'Est',
+                    technicien: 'RRA',
+                    moyen: 'Verte',
+                    semaine: '07',
+                    montant: 800,
+                    nombreJour: 8,
+                },
+                {
+                    numeroAffaire: '21.230008',
+                    agence: 'Env',
+                    technicien: 'NRA',
+                    moyen: 'Sondeuse',
+                    semaine: '08',
+                    montant: 900,
+                    nombreJour: 9,
+                },
+                {
+                    numeroAffaire: '21.230009',
+                    agence: 'GC',
+                    technicien: 'OMA',
+                    moyen: 'Technicien',
+                    semaine: '09',
+                    montant: 1000,
+                    nombreJour: 10,
+                },
+                {
+                    numeroAffaire: '21.230010',
+                    agence: 'Est',
+                    technicien: 'RRA',
+                    moyen: 'Verte',
+                    semaine: '10',
+                    montant: 200,
+                    nombreJour: 2,
+                },
+                {
+                    numeroAffaire: '21.230011',
+                    agence: 'Env',
+                    technicien: 'NRA',
+                    moyen: 'Sondeuse',
+                    semaine: '01',
+                    montant: 300,
+                    nombreJour: 3,
+                },
+                {
+                    numeroAffaire: '21.230012',
+                    agence: 'GC',
+                    technicien: 'OMA',
+                    moyen: 'Technicien',
+                    semaine: '02',
+                    montant: 400,
+                    nombreJour: 4,
+                },
+                {
+                    numeroAffaire: '21.230013',
+                    agence: 'Est',
+                    technicien: 'RRA',
+                    moyen: 'Verte',
+                    semaine: '03',
+                    montant: 500,
+                    nombreJour: 5,
+                },
+                {
+                    numeroAffaire: '21.230014',
+                    agence: 'Env',
+                    technicien: 'NRA',
+                    moyen: 'Sondeuse',
+                    semaine: '04',
+                    montant: 600,
+                    nombreJour: 6,
+                },
+                {
+                    numeroAffaire: '21.230015',
+                    agence: 'GC',
+                    technicien: 'OMA',
+                    moyen: 'Technicien',
+                    semaine: '05',
+                    montant: 700,
+                    nombreJour: 7,
+                },
+                {
+                    numeroAffaire: '21.230016',
+                    agence: 'Est',
+                    technicien: 'RRA',
+                    moyen: 'Verte',
+                    semaine: '06',
+                    montant: 800,
+                    nombreJour: 8,
+                },
+                {
+                    numeroAffaire: '21.230017',
+                    agence: 'Env',
+                    technicien: 'NRA',
+                    moyen: 'Sondeuse',
+                    semaine: '07',
+                    montant: 900,
+                    nombreJour: 9,
+                },
+                {
+                    numeroAffaire: '21.230018',
+                    agence: 'GC',
+                    technicien: 'OMA',
+                    moyen: 'Technicien',
+                    semaine: '08',
+                    montant: 1000,
+                    nombreJour: 10,
+                },
+                {
+                    numeroAffaire: '21.230019',
+                    agence: 'Est',
+                    technicien: 'RRA',
+                    moyen: 'Verte',
+                    semaine: '09',
+                    montant: 200,
+                    nombreJour: 2,
+                },
+                {
+                    numeroAffaire: '21.230020',
+                    agence: 'Env',
+                    technicien: 'NRA',
+                    moyen: 'Sondeuse',
+                    semaine: '10',
+                    montant: 300,
+                    nombreJour: 3,
+                },
+            ],
+        },
+        methods: {
+            supprimerChantier(index) {
+                Swal.fire({
+                    title: "Supprimer l'intervention",
+                    text: 'Voulez-vous supprimer cete intervention?',
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonText: 'Oui',
+                    cancelButtonText: 'Non',
+                    reverseButtons: true,
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        const interventionSupprime = this.chantiers.splice(index, 1)[0];
+                        Swal.fire('Suppression réussie', "L'intervention a été supprimée avec succès.", 'success');
+                    }
+                });
+            },
+        },
+    });
+</script>

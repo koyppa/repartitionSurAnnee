@@ -5,14 +5,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="style/bootstrap.min.css" />
         <link rel="stylesheet" href="style/style.css" />
-        <title>Ajouter un chantier</title>
+        <title>Modifier un chantier</title>
     </head>
     <body>
-        <h1>Nouveau chantier</h1>
+        <h1>Modifier un chantier</h1>
 
-        <p id="addSuccess" class="text-success" style="display: none">Le nouveau chantier à été ajouté avec succès.</p>
-
-        <form id="ajChantier">
+        <form id="mdChantier">
             <div class="form-group">
                 <label class="form-label mt-2" for="numeroAffaire">Numéro d'affaire</label>
                 <input class="form-control" type="text" id="numeroAffaire" name="numeroAffaire" pattern="\d{2}\.\d{6}" required />
@@ -70,39 +68,38 @@
 
             <button class="btn btn-secondary mt-2 mr-2" type="submit">Valider</button>
         </form>
-
-        <a href="home.html" class="btn btn-primary mt-2 mr-2">Retour à l'accueil</a>
     </body>
 </html>
 
 <script>
+    // Récupérer les paramètres de requête de l'URL
+    const urlParams = new URLSearchParams(window.location.search);
+
+    // Récupérer les valeurs des paramètres de requête
+    const numeroAffaire = urlParams.get('numeroAffaire');
+    const agence = urlParams.get('agence');
+    const technicien = urlParams.get('technicien');
+    const moyen = urlParams.get('moyen').toLowerCase();
+    const semaine = urlParams.get('semaine');
+    const montant = urlParams.get('montant');
+    const nombreJour = urlParams.get('nombreJour');
+
+    // Assigner les valeurs aux champs d'entrée
+    document.getElementById('numeroAffaire').value = numeroAffaire;
+    document.getElementById('agence').value = agence;
+    document.getElementById('technicien').value = technicien;
+    document.getElementById('moyen').value = moyen;
+    document.getElementById('semaine').value = semaine;
+    document.getElementById('montant').value = montant;
+    document.getElementById('nombreJour').value = nombreJour;
+
     function submitForm(event) {
         event.preventDefault(); // Empêche l'envoi du formulaire
 
-        // Récupération des valeurs des champs
-        var numeroAffaires = document.getElementById('numeroAffaire').value;
-        var agence = document.getElementById('agence').value;
-        var technicien = document.getElementById('technicien').value;
-        var moyen = document.getElementById('moyen').value;
-        var semaine = document.getElementById('semaine').value;
-        var montant = document.getElementById('montant').value;
-        var nombreJour = document.getElementById('nombreJour').value;
-
-        // Affichage des valeurs dans la console
-        console.log("Numéro d'affaires:", numeroAffaire);
-        console.log('Agence:', agence);
-        console.log('Technicien:', technicien);
-        console.log('Machine:', moyen);
-        console.log('Semaine:', semaine);
-        console.log('Montant:', montant);
-        console.log('Nombre de jours:', nombreJour);
-
-        document.getElementById('addSuccess').style.display = 'block';
-        document.getElementById('ajChantier').reset();
+        // Redirection vers display_technicien.html
+        window.location.href = 'display_chantier.html';
     }
 
-    document.getElementById('ajChantier').addEventListener('submit', submitForm);
-    document.getElementById('ajChantier').addEventListener('click', () => {
-        document.getElementById('addSuccess').style.display = 'none';
-    });
+    //Submit du formulaire
+    document.getElementById('mdChantier').addEventListener('submit', submitForm);
 </script>
