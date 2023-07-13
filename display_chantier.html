@@ -12,7 +12,59 @@
         <div id="app">
             <h1>Les chantiers</h1>
 
-            <table class="table table-hover">
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      Rechercher
+                    </button>
+                  </h2>
+                  <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample" style="">
+                    <div class="accordion-body">
+                        <!-- Formulaire de recherche -->
+                        <form class="mb-4">
+                            <div class="form-group">
+                                <label for="searchNumeroAffaire">Numéro d'affaire:</label>
+                                <input type="text" id="searchNumeroAffaire" v-model="searchNumeroAffaire" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label for="searchAgence">Agence:</label>
+                                <select id="searchAgence" v-model="searchAgence" class="form-control">
+                                    <option value="">Toutes</option>
+                                    <option value="Est">Est</option>
+                                    <option value="Env">Env</option>
+                                    <option value="GC">GC</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="searchMoyen">Moyen:</label>
+                                <select id="searchMoyen" v-model="searchMoyen" class="form-control">
+                                    <option value="">Tous</option>
+                                    <option value="Verte">Verte</option>
+                                    <option value="Sondeuse">Sondeuse</option>
+                                    <option value="Technicien">Technicien</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="searchTechnicien">Technicien:</label>
+                                <select id="searchTechnicien" v-model="searchTechnicien" class="form-control">
+                                    <option value="">Tous</option>
+                                    <option value="OMA">OMA</option>
+                                    <option value="RRA">RRA</option>
+                                    <option value="NRA">NRA</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="searchSemaine">Semaine:</label>
+                                <input type="text" id="searchSemaine" v-model="searchSemaine" class="form-control" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+              </div>
+
+            <!-- Table d'affichage -->
+            <table class="table table-hover mt-2">
                 <thead>
                     <tr class="table-active">
                         <th scope="col">Numéro d'affaire</th>
@@ -27,7 +79,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(chantier, index) in chantiers" :key="index">
+                    <tr v-for="(chantier, index) in paginatedChantiers" :key="index">
                         <th>{{chantier.numeroAffaire}}</th>
                         <td>{{chantier.agence}}</td>
                         <td>{{chantier.technicien}}</td>
@@ -36,7 +88,9 @@
                         <td>{{chantier.montant}}</td>
                         <td>{{chantier.nombreJour}}</td>
                         <td>
-                            <a :href="`edit_chantier.html?numeroAffaire=${chantier.numeroAffaire}&agence=${chantier.agence}&technicien=${chantier.technicien}&moyen=${chantier.moyen}&semaine=${chantier.semaine}&montant=${chantier.montant}&nombreJour=${chantier.nombreJour}`">
+                            <a
+                                :href="`edit_chantier.html?numeroAffaire=${chantier.numeroAffaire}&agence=${chantier.agence}&technicien=${chantier.technicien}&moyen=${chantier.moyen}&semaine=${chantier.semaine}&montant=${chantier.montant}&nombreJour=${chantier.nombreJour}`"
+                            >
                                 <i class="fa-regular fa-pen-to-square" style="color: #2c3e50; cursor: pointer"></i>
                             </a>
                         </td>
@@ -45,6 +99,17 @@
                         </td>
                     </tr>
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="9" class="text-center">
+                            <button class="btn btn-primary m-3" @click="currentPage--" :disabled="currentPage === 1">Précédent</button>
+                            Page <b>{{ currentPage }}</b> sur <b>{{ totalPages }}</b>
+                            <button class="btn btn-primary m-3" @click="currentPage++" :disabled="currentPage === totalPages">
+                                Suivant
+                            </button>
+                        </td>
+                    </tr>
+                </tfoot>
             </table>
 
             <a href="home.html" class="btn btn-primary mt-4">Retour à l'accueil</a>
@@ -52,6 +117,7 @@
     </body>
 </html>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
 <script>
@@ -240,8 +306,55 @@
                     nombreJour: 3,
                 },
             ],
+            currentPage: 1,
+            perPage: 12,
+            searchNumeroAffaire: '',
+            searchAgence: '',
+            searchMoyen: '',
+            searchTechnicien: '',
+            searchSemaine: '',
+        },
+        computed: {
+            filteredChantiers() {
+                // Filtrer les chantiers en fonction des critères de recherche
+                return this.chantiers.filter(chantier => {
+                    const matchesNumeroAffaire = chantier.numeroAffaire.includes(this.searchNumeroAffaire);
+                    const matchesAgence = this.searchAgence === '' || chantier.agence === this.searchAgence;
+                    const matchesMoyen = this.searchMoyen === '' || chantier.moyen === this.searchMoyen;
+                    const matchesTechnicien = this.searchTechnicien === '' || chantier.technicien === this.searchTechnicien;
+                    const matchesSemaine = chantier.semaine.includes(this.searchSemaine);
+                    return matchesNumeroAffaire && matchesAgence && matchesMoyen && matchesTechnicien && matchesSemaine;
+                });
+            },
+            paginatedChantiers() {
+                // Pagination des chantiers filtrés
+                const start = (this.currentPage - 1) * this.perPage;
+                const end = start + this.perPage;
+                return this.filteredChantiers.slice(start, end);
+            },
+            totalPages() {
+                // Calculer le nombre total de pages en fonction des chantiers filtrés
+                return Math.ceil(this.filteredChantiers.length / this.perPage);
+            },
         },
         methods: {
+            rechercherChantier() {
+                const rechercheLowerCase = this.recherche.toLowerCase();
+                const chantiersFiltres = this.chantiers.filter((chantier) => {
+                    return (
+                        chantier.numeroAffaire.toLowerCase().includes(rechercheLowerCase) ||
+                        chantier.agence.toLowerCase().includes(rechercheLowerCase) ||
+                        chantier.technicien.toLowerCase().includes(rechercheLowerCase) ||
+                        chantier.moyen.toLowerCase().includes(rechercheLowerCase) ||
+                        chantier.semaine.toLowerCase().includes(rechercheLowerCase) ||
+                        chantier.montant.toString().includes(rechercheLowerCase) ||
+                        chantier.nombreJour.toString().includes(rechercheLowerCase)
+                    );
+                });
+
+                this.currentPage = 1; // Réinitialiser la pagination
+                this.chantiers = chantiersFiltres; // Mettre à jour les chantiers affichés
+            },
             supprimerChantier(index) {
                 Swal.fire({
                     title: "Supprimer l'intervention",
