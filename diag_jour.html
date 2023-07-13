@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="style/bootstrap.min.css" />
+        <link rel="stylesheet" href="style/style.css" />
+        <title>Répartition des jours</title>
+    </head>
+
+    <body>
+        <h1>Répartition des jours</h1>
+
+        <div class="mt-2">
+            <canvas id="myChart"></canvas>
+        </div>
+
+        <a href="home.html" class="btn btn-primary mt-4">Retour à l'accueil</a>
+    </body>
+</html>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    const ctx = document.getElementById('myChart');
+    let chantiers = {
+        20.230101: {
+            moyen: 'Verte',
+            jours: 2,
+        },
+        20.230102: {
+            moyen: 'Verte',
+            jours: 7,
+        },
+        20.230103: {
+            moyen: 'Verte',
+            jours: 5,
+        },
+        20.230102: {
+            moyen: 'Sondeuse',
+            jours: 2,
+        },
+        20.230105: {
+            moyen: 'Technicien',
+            jours: 10,
+        },
+        20.230106: {
+            moyen: 'Technicien',
+            jours: 10,
+        },
+        20.230107: {
+            moyen: 'Technicien',
+            jours: 10,
+        },
+    };
+
+    new Chart(ctx, {
+        type: 'pie',
+        data: {
+            datasets: [
+                {
+                    data: [60, 20, 330],
+                },
+            ],
+
+            labels: ['Sondeuse', 'Verte', 'Technicien'],
+        },
+    });
+</script>
