@@ -9,7 +9,7 @@
     </head>
 
     <body>
-        <h1>Se connecter</h1>
+        <h1 class="mt-4">Se connecter</h1>
 
         <p id="badConnect" class="text-warning" style="display: none">Login ou mot de passe incorrect.</p>
 
@@ -33,7 +33,9 @@
     function submitForm(event) {
         event.preventDefault(); // Empêche l'envoi du formulaire
 
+        //vérification des champs
         if (document.getElementById('login').value == 'root' && document.getElementById('mdp').value == 'root') {
+            localStorage.setItem('login', document.getElementById('login').value);
             window.location.href='home.html'
         } else {
             document.getElementById('badConnect').style.display = 'block';
