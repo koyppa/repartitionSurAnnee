@@ -9,59 +9,105 @@
     </head>
 
     <body>
-        <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="home.html">ICSEO</a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02"
-                aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarColor02">
-                <ul class="navbar-nav me-auto">
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"  href="#" role="button"
-                      aria-haspopup="true" aria-expanded="false">Les interventions</a>
-                    <div class="dropdown-menu">
-                      <a class="dropdown-item" href="form_chantier.html">Ajouter une intervention</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="display_chantier.html">Voir les interventions</a>    
-                    </div>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"  href="#" role="button"
-                      aria-haspopup="true" aria-expanded="false">Les techniciens</a>
-                    <div class="dropdown-menu">
-                      <a class="dropdown-item" href="form_technicien.html">Ajouter un technicen</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="display_technicien.html">Voir les techniciens</a>    
-                    </div>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle active" data-bs-toggle="dropdown"  href="#" role="button"
-                      aria-haspopup="true" aria-expanded="false">Les statistiques</a>
-                    <div class="dropdown-menu">
-                      <a class="dropdown-item" href="diag_jour.html">Répartition des agences et moyens en jours</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Autre répartition</a>  
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Autre répartition</a>   
-                    </div>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="index.html" title="Déconnexion">
-                      <i class="fa fa-sign-out" aria-hidden="true"></i>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-        </nav>
+      <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="home.html">ICSEO</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02"
+            aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarColor02">
+            <ul class="navbar-nav me-auto">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"  href="#" role="button"
+                  aria-haspopup="true" aria-expanded="false">Les interventions</a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="form_chantier.html">Ajouter une intervention</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="display_chantier.html">Voir les interventions</a>    
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"  href="#" role="button"
+                  aria-haspopup="true" aria-expanded="false">Les techniciens</a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="form_technicien.html">Ajouter un technicen</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="display_technicien.html">Voir les techniciens</a>    
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle active" data-bs-toggle="dropdown"  href="#" role="button"
+                  aria-haspopup="true" aria-expanded="false">Les statistiques</a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="diag_jour.html">Répartition des agences et moyens en jours</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Autre répartition</a>  
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Autre répartition</a>   
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="index.html" title="Déconnexion">
+                  <i class="fa fa-sign-out" aria-hidden="true"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+    </nav>
 
         <h1 class="mt-4">Répartition des jours</h1>
 
-        <div class="mt-2" style="width: 30%;">
-            <canvas id="myChart"></canvas>
+        <h3>Nombre de jours par agence</h3>
+        <p>Représentation de l'utilisation en nombre de jour de chaque moyen par agence.</p>
+
+        <div class="grid-container">
+          <div class="grid-item mt-2" id="agenceEst">
+            <canvas id="chartEst"></canvas>
+            <h5>Agence Est</h5>
+          </div>
+        
+          <div class="grid-item mt-2"   id="agenceCentre">
+            <canvas id="chartCentre"></canvas>
+            <h5>Agence Centre</h5>
+          </div>
+        
+          <div class="grid-item mt-2"   id="agenceCentreEst">
+            <canvas id="chartCentreEst"></canvas>
+            <h5>Agence Centre Est</h5>
+          </div>
+        
+          <div class="grid-item mt-2"   id="agenceEnv">
+            <canvas id="chartEnv"></canvas>
+            <h5>Agence Env</h5>
+          </div>
+        
+          <div class="grid-item mt-2"   id="agenceGC">
+            <canvas id="chartGC"></canvas>
+            <h5>Agence Grand Compte</h5>
+          </div>
+        
+          <div class="grid-item mt-2"   id="agenceNord">
+            <canvas id="chartNord"></canvas>
+            <h5>Agence Nord</h5>
+          </div>
+        
+          <div class="grid-item mt-2"   id="agenceOuest">
+            <canvas id="chartOuest"></canvas>
+            <h5>Agence Ouest</h5>
+          </div>
+        
+          <div class="grid-item mt-2"   id="agenceParis">
+            <canvas id="chartParis"></canvas>
+            <h5>Agence Paris</h5>
+          </div>
         </div>
+
+        <h3 class="mt-4">Nombre de jours par semaine</h3>
+        <p>Représentation de l'utilisation en nombre de jour de chaque moyen par semaine.</p>
+
+        <canvas id="barChart"></canvas>
 
         <a href="home.html" class="btn btn-primary mt-4">Retour à l'accueil</a>
     </body>
@@ -72,39 +118,192 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-    const ctx = document.getElementById('myChart');
-    let chantiers = {
-        20.230101: {
-            moyen: 'Verte',
-            jours: 2,
-        },
-        20.230102: {
-            moyen: 'Verte',
-            jours: 7,
-        },
-        20.230103: {
-            moyen: 'Verte',
-            jours: 5,
-        },
-        20.230102: {
-            moyen: 'Sondeuse',
-            jours: 2,
-        },
-        20.230105: {
-            moyen: 'Technicien',
-            jours: 10,
-        },
-        20.230106: {
-            moyen: 'Technicien',
-            jours: 10,
-        },
-        20.230107: {
-            moyen: 'Technicien',
-            jours: 10,
-        },
-    };
+    
+    const chantiers = [
+                {
+                    numeroAffaire: '21.230001',
+                    agence: 'Est',
+                    technicien: 'RRA',
+                    moyen: 'Verte',
+                    semaine: '01',
+                    montant: 200,
+                    nombreJour: 2,
+                },
+                {
+                    numeroAffaire: '21.230002',
+                    agence: 'Env',
+                    technicien: 'NRA',
+                    moyen: 'Sondeuse',
+                    semaine: '02',
+                    montant: 300,
+                    nombreJour: 3,
+                },
+                {
+                    numeroAffaire: '21.230003',
+                    agence: 'GC',
+                    technicien: 'OMA',
+                    moyen: 'Technicien',
+                    semaine: '03',
+                    montant: 400,
+                    nombreJour: 4,
+                },
+                {
+                    numeroAffaire: '21.230004',
+                    agence: 'Est',
+                    technicien: 'RRA',
+                    moyen: 'Verte',
+                    semaine: '04',
+                    montant: 500,
+                    nombreJour: 5,
+                },
+                {
+                    numeroAffaire: '21.230005',
+                    agence: 'Env',
+                    technicien: 'NRA',
+                    moyen: 'Sondeuse',
+                    semaine: '05',
+                    montant: 600,
+                    nombreJour: 6,
+                },
+                {
+                    numeroAffaire: '21.230006',
+                    agence: 'GC',
+                    technicien: 'OMA',
+                    moyen: 'Technicien',
+                    semaine: '06',
+                    montant: 700,
+                    nombreJour: 7,
+                },
+                {
+                    numeroAffaire: '21.230007',
+                    agence: 'Est',
+                    technicien: 'RRA',
+                    moyen: 'Verte',
+                    semaine: '07',
+                    montant: 800,
+                    nombreJour: 8,
+                },
+                {
+                    numeroAffaire: '21.230008',
+                    agence: 'Env',
+                    technicien: 'NRA',
+                    moyen: 'Sondeuse',
+                    semaine: '08',
+                    montant: 900,
+                    nombreJour: 9,
+                },
+                {
+                    numeroAffaire: '21.230009',
+                    agence: 'GC',
+                    technicien: 'OMA',
+                    moyen: 'Technicien',
+                    semaine: '09',
+                    montant: 1000,
+                    nombreJour: 10,
+                },
+                {
+                    numeroAffaire: '21.230010',
+                    agence: 'Est',
+                    technicien: 'RRA',
+                    moyen: 'Verte',
+                    semaine: '10',
+                    montant: 200,
+                    nombreJour: 2,
+                },
+                {
+                    numeroAffaire: '21.230011',
+                    agence: 'Env',
+                    technicien: 'NRA',
+                    moyen: 'Sondeuse',
+                    semaine: '01',
+                    montant: 300,
+                    nombreJour: 3,
+                },
+                {
+                    numeroAffaire: '21.230012',
+                    agence: 'GC',
+                    technicien: 'OMA',
+                    moyen: 'Technicien',
+                    semaine: '02',
+                    montant: 400,
+                    nombreJour: 4,
+                },
+                {
+                    numeroAffaire: '21.230013',
+                    agence: 'Est',
+                    technicien: 'RRA',
+                    moyen: 'Verte',
+                    semaine: '03',
+                    montant: 500,
+                    nombreJour: 5,
+                },
+                {
+                    numeroAffaire: '21.230014',
+                    agence: 'Env',
+                    technicien: 'NRA',
+                    moyen: 'Sondeuse',
+                    semaine: '04',
+                    montant: 600,
+                    nombreJour: 6,
+                },
+                {
+                    numeroAffaire: '21.230015',
+                    agence: 'GC',
+                    technicien: 'OMA',
+                    moyen: 'Technicien',
+                    semaine: '05',
+                    montant: 700,
+                    nombreJour: 7,
+                },
+                {
+                    numeroAffaire: '21.230016',
+                    agence: 'Est',
+                    technicien: 'RRA',
+                    moyen: 'Verte',
+                    semaine: '06',
+                    montant: 800,
+                    nombreJour: 8,
+                },
+                {
+                    numeroAffaire: '21.230017',
+                    agence: 'Env',
+                    technicien: 'NRA',
+                    moyen: 'Sondeuse',
+                    semaine: '07',
+                    montant: 900,
+                    nombreJour: 9,
+                },
+                {
+                    numeroAffaire: '21.230018',
+                    agence: 'GC',
+                    technicien: 'OMA',
+                    moyen: 'Technicien',
+                    semaine: '08',
+                    montant: 1000,
+                    nombreJour: 10,
+                },
+                {
+                    numeroAffaire: '21.230019',
+                    agence: 'Est',
+                    technicien: 'RRA',
+                    moyen: 'Verte',
+                    semaine: '09',
+                    montant: 200,
+                    nombreJour: 2,
+                },
+                {
+                    numeroAffaire: '21.230020',
+                    agence: 'Env',
+                    technicien: 'NRA',
+                    moyen: 'Sondeuse',
+                    semaine: '10',
+                    montant: 300,
+                    nombreJour: 3,
+                },
+            ];
 
-    new Chart(ctx, {
+    const ctxEst = document.getElementById('chartEst');
+    new Chart(ctxEst, {
         type: 'pie',
         data: {
             datasets: [
@@ -116,4 +315,169 @@
             labels: ['Sondeuse', 'Verte', 'Technicien'],
         },
     });
+
+    const ctxCentre = document.getElementById('chartCentre');
+    new Chart(ctxCentre, {
+        type: 'pie',
+        data: {
+            datasets: [
+                {
+                    data: [100, 20, 10],
+                },
+            ],
+
+            labels: ['Sondeuse', 'Verte', 'Technicien'],
+        },
+    });
+
+    const ctxCentreEst = document.getElementById('chartCentreEst');
+    new Chart(ctxCentreEst, {
+        type: 'pie',
+        data: {
+            datasets: [
+                {
+                    data: [100, 200, 40],
+                },
+            ],
+
+            labels: ['Sondeuse', 'Verte', 'Technicien'],
+        },
+    });
+
+    const ctxEnv = document.getElementById('chartEnv');
+    new Chart(ctxEnv, {
+        type: 'pie',
+        data: {
+            datasets: [
+                {
+                    data: [60, 180, 160],
+                },
+            ],
+
+            labels: ['Sondeuse', 'Verte', 'Technicien'],
+        },
+    });
+
+    const ctxGC = document.getElementById('chartGC');
+    new Chart(ctxGC, {
+        type: 'pie',
+        data: {
+            datasets: [
+                {
+                    data: [100, 150, 3600],
+                },
+            ],
+
+            labels: ['Sondeuse', 'Verte', 'Technicien'],
+        },
+    });
+
+    const ctxNord = document.getElementById('chartNord');
+    new Chart(ctxNord, {
+        type: 'pie',
+        data: {
+            datasets: [
+                {
+                    data: [100, 100, 80],
+                },
+            ],
+
+            labels: ['Sondeuse', 'Verte', 'Technicien'],
+        },
+    });
+
+    const ctxOuest = document.getElementById('chartOuest');
+    new Chart(ctxOuest, {
+        type: 'pie',
+        data: {
+            datasets: [
+                {
+                    data: [10, 80, 40],
+                },
+            ],
+
+            labels: ['Sondeuse', 'Verte', 'Technicien'],
+        },
+    });
+
+    const ctxParis = document.getElementById('chartParis');
+    new Chart(ctxParis, {
+        type: 'pie',
+        data: {
+            datasets: [
+                {
+                    data: [40, 90, 120],
+                },
+            ],
+
+            labels: ['Sondeuse', 'Verte', 'Technicien'],
+        },
+    });
+
+
+    var barChartData = {
+        labels: [  'Semaine 1', 'Semaine 2', 'Semaine 3', 'Semaine 4', 'Semaine 5', 'Semaine 6', 'Semaine 7', 'Semaine 8',  'Semaine 9', 'Semaine 10', 'Semaine 11', 'Semaine 12', 'Semaine 13', 'Semaine 14', 'Semaine 15', 'Semaine 16',  'Semaine 17', 'Semaine 18', 'Semaine 19', 'Semaine 20', 'Semaine 21', 'Semaine 22', 'Semaine 23', 'Semaine 24',  'Semaine 25', 'Semaine 26', 'Semaine 27', 'Semaine 28', 'Semaine 29', 'Semaine 30', 'Semaine 31', 'Semaine 32',  'Semaine 33', 'Semaine 34', 'Semaine 35', 'Semaine 36', 'Semaine 37', 'Semaine 38', 'Semaine 39', 'Semaine 40',  'Semaine 41', 'Semaine 42', 'Semaine 43', 'Semaine 44', 'Semaine 45', 'Semaine 46', 'Semaine 47', 'Semaine 48',  'Semaine 49', 'Semaine 50', 'Semaine 51', 'Semaine 52'],
+        datasets: [
+            {
+                label: 'Sondeuse',
+                borderWidth: 1,
+                data: [153, 99, 291, 210, 218, 119, 12, 250, 138, 256, 228, 101, 137, 155, 168, 166, 4, 89, 187, 134, 214, 237, 168, 108, 184, 290, 266, 81, 161, 28, 29, 267, 215, 110, 223, 98, 232, 104, 194, 136, 3, 35, 34, 184, 9, 294, 45, 267, 97, 52, 72, 207, 191], 
+            },
+            {
+                label: 'Verte',
+                borderWidth: 1,
+                data: [21, 43, 13, 156, 137, 58, 226, 97, 13, 53, 70, 156, 219, 154, 289, 234, 67, 230, 169, 85, 194, 22, 237, 48, 142, 113, 133, 299, 13, 145, 202, 107, 270, 265, 86, 297, 107, 59, 46, 221, 189, 224, 184, 35, 4, 99, 270, 185, 74, 232, 250, 137], 
+            },
+            {
+                label: 'Technicien',
+                borderWidth: 1,
+                data: [216, 149, 185, 44, 77, 35, 135, 139, 37, 200, 2, 199, 269, 226, 115, 106, 197, 226, 176, 56, 18, 145, 227, 38, 61, 12, 240, 33, 61, 290, 216, 223, 164, 81, 16, 215, 63, 196, 144, 77, 112, 194, 22, 137, 117, 80, 24, 1, 280, 189, 243], 
+            },
+        ],
+    };
+
+    // Récupérer le contexte du canvas
+var ctxBar = document.getElementById('barChart').getContext('2d');
+
+// Créer le diagramme à barres
+var barChart = new Chart(ctxBar, {
+    type: 'bar',
+    data: barChartData,
+    options: {
+        responsive: true,
+        scales: {
+            x: {
+                stacked: true,
+            },
+            y: {
+                stacked: true,
+            },
+        },
+    },
+});
+    
 </script>
+
+<style>
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+  }
+
+  .grid-item {
+    max-width: 80%;
+  }
+
+  h5 {
+    display: flex; 
+    justify-content: center;
+  }
+
+  /* Optionnel : Pour centrer le contenu horizontalement dans chaque élément de la grille */
+  /* .grid-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  } */
+</style>
