@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="style/bootstrap.min.css" />
         <link rel="stylesheet" href="style/style.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <title>Connexion</title>
     </head>
 
@@ -36,6 +37,8 @@
         //vérification des champs
         if (document.getElementById('login').value == 'root' && document.getElementById('mdp').value == 'root') {
             localStorage.setItem('login', document.getElementById('login').value);
+            localStorage.setItem('nom', "Un nom");
+            localStorage.setItem('prenom', "Un prénom");
             window.location.href='home.html'
         } else {
             document.getElementById('badConnect').style.display = 'block';
