@@ -57,28 +57,41 @@
             </div>
           </nav>
         
-        <div id="profil">
-          <h1 class="mt-4">Mon profil</h1>
-          <form id="monFormulaire">
-            <div class="form-group mt-2">
-              <label for="login">Login:</label>
-              <input type="text" class="form-control" id="login" name="login" value="RRA" disabled />
-            </div>
-    
-            <div class="form-group mt-2">
-              <label for="nom">Nom:</label>
-              <input type="text" class="form-control" id="nom" name="nom" value="Rappeneau" disabled />
-            </div>
-    
-            <div class="form-group mt-2">
-              <label for="prenom">Prénom:</label>
-              <input type="text" class="form-control" id="prenom" name="prenom" value="Raphaël" disabled />
-            </div>
+        <h1 class="mt-4">Ajouter un utilisateur</h1>
 
-            <a href="edit_mdp.html" class="btn btn-secondary mt-3">Modifier le mot de passe</a>
-          </form>
+        <p id="errorPasswrd" class="text-danger" style="display: none">La confirmation du nouveau mot de passe à échoué.</p>
+        <p id="errorLogin" class="text-danger" style="display: none">Ce login est déjà utilisé.</p>
+        <p id="addSucces" class="text-success" style="display: none">Utilisateur ajouté avec succès.</p>
 
-        </div>
+
+        <form id="addUserForm">
+          <div class="form-group mt-2">
+            <label for="login">Login:</label>
+            <input type="text" class="form-control" id="login" name="login" required />
+          </div>
+  
+          <div class="form-group mt-2">
+            <label for="nom">Nom:</label>
+            <input type="text" class="form-control" id="nom" name="nom" required />
+          </div>
+  
+          <div class="form-group mt-2">
+            <label for="prenom">Prénom:</label>
+            <input type="text" class="form-control" id="prenom" name="prenom" required />
+          </div>
+  
+          <div class="form-group mt-2">
+            <label for="motDePasse">Mot de passe:</label>
+            <input type="password" class="form-control" id="motDePasse" name="motDePasse" required />
+          </div>
+  
+          <div class="form-group mt-2">
+            <label for="confirmationMotDePasse">Confirmation du mot de passe:</label>
+            <input type="password" class="form-control" id="confirmationMotDePasse" name="confirmationMotDePasse" required />
+          </div>
+  
+          <button type="submit" class="btn btn-secondary mt-4">Ajouter l'utilisateur</button>
+        </form>
 
         <a href="home.html" class="btn btn-primary mt-2 mr-2">Retour à l'accueil</a>
     </body>
@@ -86,5 +99,34 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 <script>
+  //Submit du formulaire
+  document.getElementById('addUserForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Empêche l'envoi du formulaire
+
+    const motDePasse = document.getElementById('motDePasse').value;
+    const confirmationMotDePasse = document.getElementById('confirmationMotDePasse').value;
+    const login = document.getElementById('login').value;
+
+    if(login === "root" || login === "RRA"){
+      document.getElementById('errorLogin').style.display = 'block';
+    } 
+    else {
+      if (motDePasse === confirmationMotDePasse) {
+        document.getElementById('addSucces').style.display = 'block';
+        document.getElementById('addUserForm').reset();
+      } else {
+        document.getElementById('errorPasswrd').style.display = 'block';
+      }
+      
+    }
+    
+  });
+
+  //Désaffichage du message de succès
+  document.getElementById('addUserForm').addEventListener('click', () => {
+      document.getElementById('errorLogin').style.display = 'none';
+      document.getElementById('errorPasswrd').style.display = 'none';
+      document.getElementById('addSucces').style.display = 'none';
+  });
 
 </script>
